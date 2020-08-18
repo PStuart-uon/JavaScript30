@@ -59,6 +59,26 @@
 
 <script>
 
+  // Select our buttons and sounds, convert sounds to array to get .find()
+  const sounds = Array.from(document.querySelectorAll('audio'))
+  const buttons = document.querySelectorAll('div.keys>div')
+
+  // play sounds based on key pressed/passes
+  let playSound = function(key) {
+    // find audio based on key
+    let audioFile = sounds.find(file => file.getAttribute('data-key') == key)
+
+    // built in play method of audio file in html5
+    audioFile.play();
+  }
+
+  // add event listener to all buttons
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      playSound(button.getAttribute('data-key'))
+    });
+  })
+
 </script>
 
 
